@@ -83,4 +83,10 @@ class CustomerController extends Controller
     {
         //
     }
+
+    // code started from here from me
+    public function home(){
+        return view('home');
+
+    }
 }
