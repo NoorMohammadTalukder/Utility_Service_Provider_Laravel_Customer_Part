@@ -6,6 +6,7 @@ use App\Models\customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorecustomerRequest;
 use App\Http\Requests\UpdatecustomerRequest;
+use Session;
 
 class CustomerController extends Controller
 {
@@ -165,8 +166,11 @@ class CustomerController extends Controller
     }
 
     public function customerInfo(){
+        $id=Session::get("customerId");
+        $t = customer::where('id',$id)->first();
         
-        return view ("pages.customer.customerInfo");
+        return $t->customerProfileDetail();
+        
     }
 
     public function customerLogout(){

@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-       
+    <h1>Hi {{Session::get ("customerId")}}</h1>
     </header>
 
 

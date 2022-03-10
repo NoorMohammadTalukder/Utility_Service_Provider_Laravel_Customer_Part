@@ -9,7 +9,31 @@
     <title>Customer Info</title>
 </head>
 <body>
-    <h1>Hi {{Session::get ("customerId")}}</h1>
+  
+<h1 class="text-center">Your Profile Details</h1>
+    <div class=" col-lg-4 mx-auto">
+    <table class="table table-border">
+        
+        @foreach($details as $detail)
+        <tr>
+            <td><b>User id:</b>{{$detail->id}}</td>
+        </tr>
+        <tr>
+            <td><b>Name:</b>{{$detail->name}}</td>
+        </tr>
+        <tr>
+            <td><b>Email:</b>{{$detail->email}}</td>
+        </tr>
+        <tr>
+            <td><b>Phone:</b>{{$detail->phone}}</td>
+        <tr>
+            <td><b>Address:</b>{{$detail->address}}</td>
+        </tr>
+        @endforeach
+
+    </table>
+    </div>
+
 </body>
 </html>
 @endsection
