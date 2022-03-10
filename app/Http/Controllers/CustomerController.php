@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\customer;
+use Illuminate\Http\Request;
 use App\Http\Requests\StorecustomerRequest;
 use App\Http\Requests\UpdatecustomerRequest;
 
@@ -89,4 +90,88 @@ class CustomerController extends Controller
         return view('home');
 
     }
+
+    public function signup(){
+        return view("pages.customer.signup");
+
+    }
+
+    public function signupSubmit(Request $request){
+        $validate=$request->validate([
+            'name'=>'required|min:3|max:100',
+            'email'=>'email',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'address'=>'required',
+            'password'=>'required',
+
+        ],
+
+        [
+            'name.required'=>'Name is missing',
+            'name.min'=>'Name must be greater than 3 charcters',
+            'name.max'=>'Name must be less than 100 charcters',
+            'email'=>"Mail is missing",
+            'phone.required'=>"Phone number is missing",
+            'phone.regex'=>"Enter a valid phone number",
+            'address.required'=>"Address is missing",
+            'password.required'=>"Password is missing"
+
+        ]
+
+    );
+        $customer=new customer();
+        $customer->name =$request->name;
+        $customer->email=$request->email;
+        $customer->phone =$request->phone;
+        $customer->address=$request->address;
+        $customer->password=$request->password;
+        $customer->save();
+        return redirect()->route('signup');
+    }
+
+    public function signin(){
+        return view("pages.customer.signin");
+
+    }
+
+    public function signinSubmit(Request $request){
+        $validate=$request->validate([
+            
+            'email'=>'email',
+            'password'=>'required',
+
+        ],
+        [
+            'email'=>"Mail is missing",
+            'password.required'=>"Password is missing"
+
+        ]
+        );
+
+         $customer=customer::where("email",$request->email)
+        ->where("password",$request->password)
+        ->first();
+        if ($customer){
+            $request->session()->put("customerId",$customer->id);
+
+            return redirect()->route("customerDash");
+        }
+        return back();
+
+    }
+
+    public function customerDash(){
+        return view ("pages.customer.customerDash");
+    }
+
+    public function customerInfo(){
+        
+        return view ("pages.customer.customerInfo");
+    }
+
+    public function customerLogout(){
+        session()->forget('customerId');
+        return redirect()->route('signin');
+    }
+
 }
