@@ -10,7 +10,7 @@
           <a class="nav-link active" aria-current="page" href="{{route('signup')}}">Signup</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About us</a>
+          <a class="nav-link" href="{{route('list')}}">Our Services</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact us</a>

@@ -52,9 +52,8 @@
     </header>
 
     <main>
-            <section class="container mt-3">
-                <!-- <div class="row"> -->
-                    <!-- <div class="col-6"> -->
+            <!-- <section class="container mt-3">
+               
                         <h1 class="text-center">Our Recomended Services</h1>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -183,11 +182,12 @@
 
                     
 
-                    <!-- </div> -->
+                   
 
-                <!-- </div> -->
+            </section> -->
 
-            </section>
+          
+
 
             <!-- customer review -->
             <!-- moment part -->

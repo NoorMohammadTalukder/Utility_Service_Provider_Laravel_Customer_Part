@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,6 @@ Route::get('/customerUpdate', [CustomerController::class, 'customerUpdate'])->na
 Route::post('/customerUpdate', [CustomerController::class, 'customerUpdateSubmit'])->name('customerUpdate');
 
 Route::get('/customerLogout', [CustomerController::class, 'customerLogout'])->name('customerLogout');
+
+// products work
+Route::get('/list',[ProductController::class,'list'])->name('list');
