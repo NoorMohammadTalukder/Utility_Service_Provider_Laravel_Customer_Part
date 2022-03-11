@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,5 @@ Route::get('/list',[ProductController::class,'list'])->name('list');
 Route::get('/addtocart/{id}',[ProductController::class,'addtocart'])->name('addtocart');
 
 Route::get('/cart',[ProductController::class,'cart'])->name('cart');
+
+Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');

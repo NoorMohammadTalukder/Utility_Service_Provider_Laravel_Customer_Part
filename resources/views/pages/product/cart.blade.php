@@ -39,10 +39,10 @@
                 <td>{{$total}}</td>
             </tr>
         </table>
-        <form action="" method="post">
+        <form action="{{route('checkout')}}" method="post">
             {{@csrf_field()}}
             <input type="hidden" name="total_price" value="{{$total}}">
-            <input type="submit" class="btn btn-danger" value="Checkout">
+            <input type="submit" class="btn btn-danger" value="checkout">
         </form>
     @else
         Cart is empty

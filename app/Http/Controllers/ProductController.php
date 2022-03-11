@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\order;
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
 use Illuminate\Http\Request;
@@ -97,8 +98,8 @@ class ProductController extends Controller
 
     }
 
-    public function addtocart(Request $req){
-        $id = $req->id;
+    public function addtocart(Request $request){
+        $id = $request->id;
         $p = product::where('id',$id)->first();
         $cart=[];
         //$jsonCart = $req->session()->get('cart'); to get session value
@@ -119,4 +120,34 @@ class ProductController extends Controller
         return view('pages.product.cart')
         ->with('cart',$cart);
     }
+
+    public function checkout(Request $request){
+        //let when logged in there will be a field in session
+        $products = json_decode(session()->get('cart'));
+        //creating order
+        $customer_id = Session::get("customerId");
+        $order = new order();
+        $order->customer_id = $customer_id;
+        $order->status="Ordered";
+        $order->price = $request->total_price;
+        $order->save();
+
+        //creating order details
+        // foreach($products as $p){
+        //     $o_d = new Orderdetail();
+        //     $o_d->o_id = $order->id;
+        //     $o_d->product_id = $p->id;
+        //     $o_d->qty = $p->qty;
+        //     $o_d->unit_price = $p->price;
+        //     $o_d->save();
+        // }
+
+        session()->forget('cart');
+
+        return "Added to db";
+        
+
+    }
+
+    
 }
