@@ -204,7 +204,8 @@ class CustomerController extends Controller
 
     public function customerUpdate(){
         $id=Session::get("customerId");
-        $user = customer::where('id', $id)->first();
+        $user = customer::find($id);
+        // $user = customer::where('id', $id)->first();
         // return $customer;
 
         return view ("pages.customer.customerUpdate")->with('user', $user);
@@ -214,17 +215,25 @@ class CustomerController extends Controller
 
 
     public function customerUpdateSubmit(Request $request){
-        $id=Session::get("customerId");
-        $user = customer::where('id', $request->id)->first();
+       // $id=Session::get("customerId");
+          $user1 = customer::where('id', $request->id)->first();
+          
+         // return $user1;
+        //   echo $request->id;
+        //   echo $request->name;
+        //   echo $request->email;
+        //   echo $request->phone;
+        //   echo $request->address;
 
-        // return $request->id;
-        $user->name = $request->name;
-        $user->email= $request->email;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->password = $request->password;
-        $user->save();
-        return view ("pages.customer.customerUpdate");
+       // return $request->id;
+        $user1->name = $request->name;
+        $user1->email= $request->email;
+        $user1->phone = $request->phone;
+        $user1->address = $request->address;
+    //    // $user->password = $request->password;
+        $user1->save();
+        return view ("pages.customer.customerDash");
+    
     }
 
 
