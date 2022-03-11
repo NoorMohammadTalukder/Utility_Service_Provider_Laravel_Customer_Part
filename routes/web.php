@@ -40,3 +40,7 @@ Route::get('/customerLogout', [CustomerController::class, 'customerLogout'])->na
 
 // products work
 Route::get('/list',[ProductController::class,'list'])->name('list');
+
+Route::get('/addtocart/{id}',[ProductController::class,'addtocart'])->name('addtocart');
+
+Route::get('/cart',[ProductController::class,'cart'])->name('cart');

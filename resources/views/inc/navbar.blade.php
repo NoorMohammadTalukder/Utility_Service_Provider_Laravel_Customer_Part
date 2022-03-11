@@ -13,6 +13,9 @@
           <a class="nav-link" href="{{route('list')}}">Our Services</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{route('cart')}}">Cart</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Contact us</a>
         </li>
         
