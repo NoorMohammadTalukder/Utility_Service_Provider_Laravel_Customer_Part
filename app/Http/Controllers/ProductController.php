@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\order;
+use App\Models\orderDetail;
+use App\Models\customer;
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
 use Illuminate\Http\Request;
@@ -133,20 +135,29 @@ class ProductController extends Controller
         $order->save();
 
         //creating order details
-        // foreach($products as $p){
-        //     $o_d = new Orderdetail();
-        //     $o_d->o_id = $order->id;
-        //     $o_d->product_id = $p->id;
-        //     $o_d->qty = $p->qty;
-        //     $o_d->unit_price = $p->price;
-        //     $o_d->save();
-        // }
+        foreach($products as $p){
+            $orderDetail = new orderDetail();
+            $orderDetail->order_id = $order->id;
+            $orderDetail->product_id = $p->id;
+            $orderDetail->quantity = $p->qty;
+            $orderDetail->unit_price = $p->price;
+            $orderDetail->customer_id = $customer_id;
+            $orderDetail->save();
+        }
 
         session()->forget('cart');
 
         return "Added to db";
         
 
+    }
+
+    public function orderHistory(){
+        $id=Session::get("customerId");
+        $history=orderDetail::where("customer_id",$id)->get();
+        // $customer=customer::where("id",$id)->first();
+        // return $history;
+        return view ("pages.product.history")->with('history', $history);
     }
 
     

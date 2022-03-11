@@ -47,3 +47,7 @@ Route::get('/addtocart/{id}',[ProductController::class,'addtocart'])->name('addt
 Route::get('/cart',[ProductController::class,'cart'])->name('cart');
 
 Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');
+
+Route::get('/orderHistory',[ProductController::class,'orderHistory'])->name('orderHistory');
+
+// Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');
