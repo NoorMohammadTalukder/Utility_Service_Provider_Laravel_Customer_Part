@@ -160,5 +160,14 @@ class ProductController extends Controller
         return view ("pages.product.history")->with('history', $history);
     }
 
+    public function emptycart(){
+        session()->forget('cart');
+        if(!session()->has('cart')){
+            return "Cart is empty";
+        }
+        return session('cart');
+        
+    }
+
     
 }

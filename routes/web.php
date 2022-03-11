@@ -50,4 +50,6 @@ Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout')
 
 Route::get('/orderHistory',[ProductController::class,'orderHistory'])->name('orderHistory');
 
+Route::get('/emptycart',[ProductController::class,'emptycart'])->name('emptycart');
+
 // Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');
