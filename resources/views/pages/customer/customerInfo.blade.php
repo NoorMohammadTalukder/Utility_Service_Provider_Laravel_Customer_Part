@@ -11,7 +11,7 @@
 <body>
   
 <h1 class="text-center">Your Profile Details</h1>
-    <div class=" col-lg-4 mx-auto">
+    <div class=" col-lg-4 mx-auto" style="background-color:rgb(240,160,75)">
     <table class="table table-border">
         
         @foreach($details as $detail)

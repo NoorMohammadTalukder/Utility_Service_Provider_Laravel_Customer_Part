@@ -28,4 +28,11 @@ Route::get('/customerDash', [CustomerController::class, 'customerDash'])->name('
 
 Route::get('/customerInfo', [CustomerController::class, 'customerInfo'])->name('customerInfo');
 
+Route::get('/customerUpdateInformation', [CustomerController::class, 'customerUpdateInformation'])->name('customerUpdateInformation');
+
+Route::post('/updateInformationPassFormSubmit', [CustomerController::class, 'updateInformationPassFormSubmit'])->name('updateInformationPassFormSubmit');
+
+Route::get('/customerUpdate', [CustomerController::class, 'customerUpdate'])->name('customerUpdate');
+Route::post('/customerUpdate', [CustomerController::class, 'customerUpdateSubmit'])->name('customerUpdate');
+
 Route::get('/customerLogout', [CustomerController::class, 'customerLogout'])->name('customerLogout');

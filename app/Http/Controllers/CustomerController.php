@@ -149,7 +149,7 @@ class CustomerController extends Controller
         ]
         );
 
-         $customer=customer::where("email",$request->email)
+        $customer=customer::where("email",$request->email)
         ->where("password",$request->password)
         ->first();
         if ($customer){
@@ -172,6 +172,62 @@ class CustomerController extends Controller
         return $t->customerProfileDetail();
         
     }
+
+    public function customerUpdateInformation(){
+        return view("pages.customer.updateInformationPasswordCheck");
+        
+    }
+
+    public function updateInformationPassFormSubmit(Request $request){
+        $validate=$request->validate([
+            'password'=>'required',
+
+        ],
+        [
+            'password.required'=>"Password is missing"
+
+        ]
+        );
+        $id=Session::get("customerId");
+        $customer=customer::where("id",$id)
+        ->where("password",$request->password)
+        ->first();
+        if ($customer){
+            echo $customer;
+            return redirect()->route("customerUpdate");
+        }
+        return back();
+        
+    }
+
+
+
+    public function customerUpdate(){
+        $id=Session::get("customerId");
+        $user = customer::where('id', $id)->first();
+        // return $customer;
+
+        return view ("pages.customer.customerUpdate")->with('user', $user);
+    }
+
+
+
+
+    public function customerUpdateSubmit(Request $request){
+        $id=Session::get("customerId");
+        $user = customer::where('id', $request->id)->first();
+
+        // return $request->id;
+        $user->name = $request->name;
+        $user->email= $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = $request->password;
+        $user->save();
+        return view ("pages.customer.customerUpdate");
+    }
+
+
 
     public function customerLogout(){
         session()->forget('customerId');
