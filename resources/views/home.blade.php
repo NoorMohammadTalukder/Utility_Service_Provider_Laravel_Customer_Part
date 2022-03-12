@@ -8,7 +8,7 @@
     <title>Home</title>
 </head>
 @section('content')
-<body>
+<body style="" >
     <header class="container">
         <!-- carousel startede from here -->
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -209,7 +209,7 @@
         </section>
 
          <!-- frequently question part -->
-         <section class="container mt-5 mx-auto bg-danger">
+         <section class="container mt-5 mx-auto shadow-lg ">
             <div>
                 <h1 class="text-center">Frequently Asked Questions</h1>
             </div>
@@ -219,21 +219,21 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    What’s the difference between event design and event planning?
+                                    What is your privacy policy??
                             </button>
                             </h2>
                             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">Event design and event planning work hand in hand to deliver a successful event.Events by Knight offer tailor made events. This means we incorporate both event design and event planning to create that perfect event.</div>
+                                <div class="accordion-body">Sheba.xyz has established a Privacy Policy that explains to users how their information is collected and used. The Privacy Policy is referenced above and hereby incorporated into the Terms of Use set forth herein. Your use of this Product is governed by the Privacy Policy.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                    How early do we need to start planning an event?
+                               What ARE THE SANCTIONS FOR VIOLATING ANY OF THE RULES FOR SERVICE USERS?
                             </button>
                             </h2>
                             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">when organising for a public event aiming at 100 to 1,000 attendees; the details should be released to the public and the media 2 months in advance.</div>
+                                <div class="accordion-body">If a SERVICE USER violates any of the above-referenced rules in connection with his or her Posting, Sheba.xyz, in its sole discretion, may take any of the following actions: (a) cancel the Posting; (b) limit the SERVICE USER's Account privileges; (c) suspend the SERVICE USER's Account; and/or (d) decrease the SERVICE USER's status earned via the Feedback page.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
@@ -262,15 +262,15 @@
 
      <!-- footer started -->
 
-     <footer class="text-center d-flex justify-content-center align-items-center  mt-5 row bg-primary container-fluid mx-auto">
-            <p class="pt-3 col-lg-6"><b>©2022. All Right Reserved By Noor Mohammad </b></p>
+     <footer class="text-center d-flex justify-content-center align-items-center  mt-5 row bg-dark container-fluid mx-auto">
+            <p class="pt-3 col-lg-6 text-white"><b>©2022. All Right Reserved By Noor Mohammad Talukder </b></p>
                 <div class="col-lg-6">
-                    <h4>Get the App</h4>
+                    <h4 class="text-white mt-2">Get the App</h4>
                         <a class="" href="https://play.google.com/store/apps/details?id=com.spotify.music">
-                        <img width="100" src="images/play.png" alt="">
-                        </a> <br>
+                        <img width="150" src="{{URL('images/a1.png')}}" alt="">
+                        </a> <br><br>
                         <a href="https://play.google.com/store/apps/details?id=com.shazam.android">
-                        <img class="pb-5" width="100" src="images/apple.JPG" alt="">
+                        <img class="pb-5" width="150" src="{{URL('images/a2.png')}}" alt="">
                         </a>
                 </div>
     </footer>

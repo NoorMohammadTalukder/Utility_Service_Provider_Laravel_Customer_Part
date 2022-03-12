@@ -16,11 +16,14 @@
                 <form   action="{{route('signin')}}" class="form-group  border border-primary shadow-lg p-3 mb-5 bg-body rounded rounded-3  " method="post">
                     {{csrf_field()}}
 
-                    <label for="">Email</label>
-                    <input type="email" name="email" id="" value="{{old('email')}}" class="form-control">
+                   
+                    <input type="email" class="form-control rounded-left" name="email" <?php if(isset($_COOKIE['remember'])) {echo $_COOKIE['remember'];} ?> value = "<?php if(isset($_COOKIE['remember'])) {echo $_COOKIE['remember'];} ?>"  required>
                     @error('email')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
+                    <span><br>
+						{{Cookie::get('email')}}
+				</span>
                     <br>
 
                     <label for="">Password</label>
@@ -29,6 +32,11 @@
                         <span class="text-danger">{{$message}}</span>
                     @enderror
                     <br>
+
+                    <label class="checkbox-wrap checkbox-primary">Remember Me
+									<input type="checkbox" name="remember">
+									<span class="checkmark"></span>
+					</label>
 
                     
                     <div class="d-grid gap-2">

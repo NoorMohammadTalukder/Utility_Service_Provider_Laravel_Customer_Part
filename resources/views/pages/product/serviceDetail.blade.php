@@ -31,7 +31,7 @@
                     <br>
 
                     <label for="">Add Quantity</label>
-                    <input type="qty" name="qty" id="" value="{{old('qty')}}" class="form-control">
+                    <input type="number" name="qty" id="" value="{{old('qty')}}" min="1" max="5" class="form-control">
                     @error('qty')
                         <span class="text-danger">{{$message}}</span>
                     @enderror

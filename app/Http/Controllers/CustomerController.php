@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorecustomerRequest;
 use App\Http\Requests\UpdatecustomerRequest;
 use Session;
+use Illuminate\Support\Facades\Cookie;
 
 class CustomerController extends Controller
 {
@@ -155,7 +156,15 @@ class CustomerController extends Controller
         if ($customer){
             $request->session()->put("customerId",$customer->id);
 
-            return redirect()->route("customerDash");
+            if ($request->remember) {
+                setcookie('remember',$request->email, time()+36000);
+              
+            }else{
+                setcookie('remember',"");
+                Cookie::queue('email',"");
+            }
+
+            return redirect()->route("home");
         }
         return back();
 
@@ -232,7 +241,7 @@ class CustomerController extends Controller
         $user1->address = $request->address;
     //    // $user->password = $request->password;
         $user1->save();
-        return view ("pages.customer.customerDash");
+        return redirect()->route('home');
     
     }
 
