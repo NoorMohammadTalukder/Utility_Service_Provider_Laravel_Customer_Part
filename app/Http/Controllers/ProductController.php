@@ -140,7 +140,12 @@ class ProductController extends Controller
         $customer_id = Session::get("customerId");
         $problem= Session::get("problem");
         
-        
+        // ------------
+        // $cart = json_decode(session()->get('cart'));
+        // $k = array_search(4, $cart);
+        // return $k;
+
+        // -----------
         $order = new order();
 
         $order->customer_id = $customer_id;
@@ -158,13 +163,16 @@ class ProductController extends Controller
             $orderDetail->quantity = $p->qty;
             $orderDetail->unit_price = $p->price;
             $orderDetail->customer_id = $customer_id;
-            // $orderDetail->problem = $problem;
+            $orderDetail->serviceName = $p->name;
+            $orderDetail->totalPrice = $request->total_price;
+            $orderDetail->orderStatus = "pending";
+            $orderDetail->serviceProvider = "not assigned yet";
             $orderDetail->save();
         }
 
         session()->forget('cart');
 
-        return "Added to db";
+        return redirect()->route('home');
         
 
     }
@@ -180,7 +188,7 @@ class ProductController extends Controller
     public function emptycart(){
         session()->forget('cart');
         if(!session()->has('cart')){
-            return "Cart is empty";
+            return redirect()->route('cart');
         }
         return session('cart');
         

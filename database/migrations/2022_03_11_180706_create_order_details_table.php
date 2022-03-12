@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('unit_price');
             $table->string('customer_id');
+            $table->string('serviceName');
+            $table->string('totalPrice'); 
+            $table->string('orderStatus');  
+            $table->string('serviceProvider');  
             $table->timestamps();
         });
     }

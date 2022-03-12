@@ -18,16 +18,12 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('cart')}}">Cart</a>
         </li>
+       
+        
+        @if (Session::get("customerId")) 
         <li class="nav-item">
           <a class="nav-link" href="{{route('orderHistory')}}">Order History</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('emptycart')}}">Empty Cart</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact us</a>
-        </li>
-        @if (Session::get("customerId")) 
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{route('customerInfo')}}"><h5 class="text-success">User Info</h5></a>
         </li>

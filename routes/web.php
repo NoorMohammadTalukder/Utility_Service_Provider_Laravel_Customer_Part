@@ -28,18 +28,18 @@ Route::post('/signup', [CustomerController::class, 'signupSubmit'])->name('signu
 Route::get('/signin', [CustomerController::class, 'signin'])->name('signin');
 Route::post('/signin', [CustomerController::class, 'signinSubmit'])->name('signin');
 
-Route::get('/customerDash', [CustomerController::class, 'customerDash'])->name('customerDash');
+Route::get('/customerDash', [CustomerController::class, 'customerDash'])->name('customerDash')->middleware("validCustomer");;
 
-Route::get('/customerInfo', [CustomerController::class, 'customerInfo'])->name('customerInfo');
+Route::get('/customerInfo', [CustomerController::class, 'customerInfo'])->name('customerInfo')->middleware("validCustomer");
 
-Route::get('/customerUpdateInformation', [CustomerController::class, 'customerUpdateInformation'])->name('customerUpdateInformation');
+Route::get('/customerUpdateInformation', [CustomerController::class, 'customerUpdateInformation'])->name('customerUpdateInformation')->middleware("validCustomer");
 
-Route::post('/updateInformationPassFormSubmit', [CustomerController::class, 'updateInformationPassFormSubmit'])->name('updateInformationPassFormSubmit');
+Route::post('/updateInformationPassFormSubmit', [CustomerController::class, 'updateInformationPassFormSubmit'])->name('updateInformationPassFormSubmit')->middleware("validCustomer");
 
-Route::get('/customerUpdate', [CustomerController::class, 'customerUpdate'])->name('customerUpdate');
-Route::post('/customerUpdate', [CustomerController::class, 'customerUpdateSubmit'])->name('customerUpdate');
+Route::get('/customerUpdate', [CustomerController::class, 'customerUpdate'])->name('customerUpdate')->middleware("validCustomer");
+Route::post('/customerUpdate', [CustomerController::class, 'customerUpdateSubmit'])->name('customerUpdate')->middleware("validCustomer");
 
-Route::get('/customerLogout', [CustomerController::class, 'customerLogout'])->name('customerLogout');
+Route::get('/customerLogout', [CustomerController::class, 'customerLogout'])->name('customerLogout')->middleware("validCustomer");
 
 // products work
 Route::get('/list',[ProductController::class,'list'])->name('list');
@@ -50,9 +50,9 @@ Route::post('/addtocart',[ProductController::class,'addtocart'])->name('addtocar
 
 Route::get('/cart',[ProductController::class,'cart'])->name('cart');
 
-Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');
+Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout')->middleware("validCustomer");
 
-Route::get('/orderHistory',[ProductController::class,'orderHistory'])->name('orderHistory');
+Route::get('/orderHistory',[ProductController::class,'orderHistory'])->name('orderHistory')->middleware("validCustomer");
 
 Route::get('/emptycart',[ProductController::class,'emptycart'])->name('emptycart');
 
