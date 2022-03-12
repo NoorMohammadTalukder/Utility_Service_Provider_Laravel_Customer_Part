@@ -18,8 +18,9 @@
 
 
 
-                <div class=" col-lg-6 col-sm-6 p-5 ">
-                   <form action="{{route('signup')}}" class="form-group shadow-lg p-3 mb-5 bg-body rounded" method="post">
+                <div class=" col-lg-6 col-sm-6 p-5 shadow-lg   rounded  ">
+                    <h1 class="text-primary">Signup</h1>
+                   <form class="" action="{{route('signup')}}" class="form-group shadow-lg p-3 mb-5 bg-body rounded" method="post">
                         {{csrf_field()}}
 
                         @if ($errors->any())

@@ -12,7 +12,7 @@
     <section class="container mt-5">
     <div class="row  justify-content-center align-items-center" >
                 <div class="col-lg-6 col-sm-6 " >
-                    <h1>Signin</h1>
+                    <h1 class="text-primary">Signin</h1>
                 <form   action="{{route('signin')}}" class="form-group  border border-primary shadow-lg p-3 mb-5 bg-body rounded rounded-3  " method="post">
                     {{csrf_field()}}
 
