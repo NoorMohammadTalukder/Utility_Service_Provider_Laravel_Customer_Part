@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('customer_id');
             $table->string('status');
             $table->string('price');
+            $table->string('problem');
             $table->timestamps();
         });
     }

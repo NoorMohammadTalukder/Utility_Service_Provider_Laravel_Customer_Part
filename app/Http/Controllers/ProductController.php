@@ -91,29 +91,39 @@ class ProductController extends Controller
 
 
     public function list(){
-        // echo "hi";
         $products = product::all();
-        // return $products;
         return view('pages.product.service')->with('products',$products);
-        // return view('pages.product.service');
-        // ->with('products',$products);
+
+    }
+
+     public function serviceDetail(Request $request){
+        $id = $request->id;
+        $request->session()->put("serviceId",$id);
+        // return $id;
+        $p = product::find($id);
+        // return $p;
+        return view('pages.product.serviceDetail')->with('p', $p);
 
     }
 
     public function addtocart(Request $request){
-        $id = $request->id;
+        
+        $id = Session::get("serviceId");
+        $qty =$request->qty;
+        $problem =$request->problem;
+        $request->session()->put("problem",$problem);
+      
         $p = product::where('id',$id)->first();
         $cart=[];
-        //$jsonCart = $req->session()->get('cart'); to get session value
-        //session()->get('cart')
+        
         if(session()->has('cart')){
             $cart = json_decode(session()->get('cart'));
         }
-        $product = array('id'=>$id,'qty'=>1,'name'=>$p->name,'price'=>$p->price,'image'=>$p->image);
+        $product = array('id'=>$id,'qty'=>$qty,'problem'=>$problem,'name'=>$p->name,'price'=>$p->price,'image'=>$p->image,);
         $cart[] = (object)($product);
         $jsonCart = json_encode($cart);
         session()->put('cart',$jsonCart);
-        //return session()->get('cart');
+       
         return redirect()->route('list');
     }
 
@@ -124,17 +134,23 @@ class ProductController extends Controller
     }
 
     public function checkout(Request $request){
-        //let when logged in there will be a field in session
+      
         $products = json_decode(session()->get('cart'));
-        //creating order
+        
         $customer_id = Session::get("customerId");
+        $problem= Session::get("problem");
+        
+        
         $order = new order();
+
         $order->customer_id = $customer_id;
-        $order->status="Ordered";
+        $order->status="Pending";
         $order->price = $request->total_price;
+        $order->problem = $problem;
+       
         $order->save();
 
-        //creating order details
+   
         foreach($products as $p){
             $orderDetail = new orderDetail();
             $orderDetail->order_id = $order->id;
@@ -142,6 +158,7 @@ class ProductController extends Controller
             $orderDetail->quantity = $p->qty;
             $orderDetail->unit_price = $p->price;
             $orderDetail->customer_id = $customer_id;
+            // $orderDetail->problem = $problem;
             $orderDetail->save();
         }
 

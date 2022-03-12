@@ -9,14 +9,18 @@
     <title>Cart</title>
 </head>
 <body>
-@if(Session::has('cart'))
+<center>
+    <div class=col-lg-6>
+    @if(Session::has('cart'))
         <table class="table table-bordered">
             <tr>
-                <td></td>
-                <td>Name</td>
-                <td>Qty</td>
-                <td>Unit Price</td>
-                <td>Total</td>
+                <th></th>
+                <th>Name</th>
+                <th>Qty</td>
+                <th>Description of problem</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+             
             </tr>
             @php
             $total = 0
@@ -26,6 +30,7 @@
                     <td><img src="{{asset('images/'.$item->image)}}" width="50px" height="50px"></td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->qty}}</td>
+                    <td>{{$item->problem}}</td>
                     <td>{{$item->price}}</td>
                     <td>{{$item->price * $item->qty}}</td>
                     @php 
@@ -35,18 +40,20 @@
             @endforeach
             <tr>
                 <td></td><td></td><td></td>
-                <td>Grand Total</td>
-                <td>{{$total}}</td>
+                <th class="bg-primary">Total Amount:</th>
+                <th class="bg-warning">{{$total}} BDT</th>
             </tr>
         </table>
         <form action="{{route('checkout')}}" method="post">
             {{@csrf_field()}}
             <input type="hidden" name="total_price" value="{{$total}}">
-            <input type="submit" class="btn btn-danger" value="checkout">
+            <input type="submit" class="btn btn-success" value="Confirm Order">
         </form>
     @else
-        Cart is empty
+       <center><h3 class="text-danger">Cart is empty..Add some service</h3></center>
     @endif
+    </div>
+</center>
 </body>
 </html>
 @endsection

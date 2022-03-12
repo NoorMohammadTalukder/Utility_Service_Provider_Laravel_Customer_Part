@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light container">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Sheba</a>
+    <a class="navbar-brand" href="{{route('home')}}">Sheba</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,6 +8,9 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{route('signup')}}">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route('signin')}}">Signin</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('list')}}">Our Services</a>
@@ -24,6 +27,17 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Contact us</a>
         </li>
+        @if (Session::get("customerId")) 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route('customerInfo')}}"><h5 class="text-success">User Info</h5></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route('customerUpdateInformation')}}"><h5 class="text-success">Update Information</h5></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('customerLogout')}}"><h5 class="text-danger">Logout</h5></a>
+        </li>
+        @endif
         
       </ul>
     </div>

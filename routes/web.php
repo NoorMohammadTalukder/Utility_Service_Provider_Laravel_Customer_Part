@@ -20,6 +20,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/home', [CustomerController::class, 'home'])->name('home');
+
 Route::get('/signup', [CustomerController::class, 'signup'])->name('signup');
 Route::post('/signup', [CustomerController::class, 'signupSubmit'])->name('signup');
 
@@ -42,7 +44,9 @@ Route::get('/customerLogout', [CustomerController::class, 'customerLogout'])->na
 // products work
 Route::get('/list',[ProductController::class,'list'])->name('list');
 
-Route::get('/addtocart/{id}',[ProductController::class,'addtocart'])->name('addtocart');
+Route::get('/serviceDetail/{id}',[ProductController::class,'serviceDetail'])->name('serviceDetail');
+
+Route::post('/addtocart',[ProductController::class,'addtocart'])->name('addtocart');
 
 Route::get('/cart',[ProductController::class,'cart'])->name('cart');
 
