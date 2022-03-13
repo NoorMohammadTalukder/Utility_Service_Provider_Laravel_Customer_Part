@@ -107,6 +107,20 @@ class ProductController extends Controller
     }
 
     public function addtocart(Request $request){
+
+        $validate=$request->validate([
+            'problem'=>'required',
+            'number'=>'required',
+            'number'=>'numeric|min:1|max:5',
+
+        ],
+        [
+            'problem.required'=>"Problem is missing",
+            'number.required'=>"number is missing",
+            'number.numeric'=>"Must be between 1-5",
+
+        ]
+        );
         
         $id = Session::get("serviceId");
         $qty =$request->qty;
