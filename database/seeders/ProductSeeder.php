@@ -15,5 +15,11 @@ class ProductSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('products')->insert([
+            'name' =>"Home cleaning",
+            'price' =>"1500",
+            'images' =>"p1.jpg",
+            
+        ]);
     }
 }
