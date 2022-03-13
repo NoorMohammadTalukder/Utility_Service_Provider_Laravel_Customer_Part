@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +56,7 @@ Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout')
 Route::get('/orderHistory',[ProductController::class,'orderHistory'])->name('orderHistory')->middleware("validCustomer");
 
 Route::get('/emptycart',[ProductController::class,'emptycart'])->name('emptycart');
+
+Route::get('/SpecificServiceDetail/{id}',[CustomerController::class,'SpecificServiceDetail'])->name('SpecificServiceDetail')->middleware("validCustomer");;
 
 // Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');

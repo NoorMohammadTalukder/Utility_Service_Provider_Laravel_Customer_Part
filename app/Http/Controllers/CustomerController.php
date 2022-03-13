@@ -252,4 +252,14 @@ class CustomerController extends Controller
         return redirect()->route('signin');
     }
 
+    public function SpecificServiceDetail(Request $request){
+        //  $t=$request->name;
+         
+                // echo "hi";
+                $t = customer::where('id',$request->id)->first();
+                //   return $t;
+                 return $t->customerProfileDetail1();
+        
+            }
+
 }

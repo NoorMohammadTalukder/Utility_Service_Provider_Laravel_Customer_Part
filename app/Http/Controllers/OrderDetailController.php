@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
+use App\Models\order;
 use App\Models\orderDetail;
+use App\Models\customer;
 use App\Http\Requests\StoreorderDetailRequest;
 use App\Http\Requests\UpdateorderDetailRequest;
+use Session;
 
 class OrderDetailController extends Controller
 {
@@ -83,4 +87,12 @@ class OrderDetailController extends Controller
     {
         //
     }
+    // public function orderHistory(){
+    //     $id=Session::get("customerId");
+    //     $t = customer::where('id',$id)->first();
+       
+    //     $t1=$t->id;
+    //     // return $t1;
+    //     return $t1->orderHistory();
+    // }
 }

@@ -183,7 +183,7 @@ class ProductController extends Controller
         // $customer=customer::where("id",$id)->first();
         // return $history;
         return view ("pages.product.history")->with('history', $history);
-    }
+     }
 
     public function emptycart(){
         session()->forget('cart');
@@ -193,6 +193,8 @@ class ProductController extends Controller
         return session('cart');
         
     }
+
+   
 
     
 }
