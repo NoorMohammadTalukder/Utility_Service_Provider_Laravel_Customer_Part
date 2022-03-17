@@ -16,7 +16,7 @@
                 <form   action="{{route('signin')}}" class="form-group  border border-primary shadow-lg p-3 mb-5 bg-body rounded rounded-3  " method="post">
                     {{csrf_field()}}
 
-                   
+                    <label for="">Email</label>
                     <input type="email" class="form-control rounded-left" name="email" <?php if(isset($_COOKIE['remember'])) {echo $_COOKIE['remember'];} ?> value = "<?php if(isset($_COOKIE['remember'])) {echo $_COOKIE['remember'];} ?>"  required>
                     @error('email')
                         <span class="text-danger">{{$message}}</span>
