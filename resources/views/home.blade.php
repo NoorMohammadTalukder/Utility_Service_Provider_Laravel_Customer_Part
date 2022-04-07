@@ -9,7 +9,7 @@
 </head>
 @section('content')
 <body style="" >
-    <header class="container">
+    <header class="container mt-5 rounded">
         <!-- carousel startede from here -->
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
