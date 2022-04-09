@@ -92,17 +92,19 @@ class ProductController extends Controller
 
     public function list(){
         $products = product::all();
-        return view('pages.product.service')->with('products',$products);
+        // return view('pages.product.service')->with('products',$products);
+        return $products;
 
     }
 
      public function serviceDetail(Request $request){
         $id = $request->id;
-        $request->session()->put("serviceId",$id);
+        // $request->session()->put("serviceId",$id);
         // return $id;
         $p = product::find($id);
-        // return $p;
-        return view('pages.product.serviceDetail')->with('p', $p);
+       
+        return $p;
+        // return view('pages.product.serviceDetail')->with('p', $p);
 
     }
 
@@ -125,7 +127,7 @@ class ProductController extends Controller
         $id = Session::get("serviceId");
         $qty =$request->qty;
         $problem =$request->problem;
-        $request->session()->put("problem",$problem);
+        // $request->session()->put("problem",$problem);
       
         $p = product::where('id',$id)->first();
         $cart=[];
@@ -191,12 +193,13 @@ class ProductController extends Controller
 
     }
 
-    public function orderHistory(){
-        $id=Session::get("customerId");
+    public function orderHistory(Request $request){
+        // $id=Session::get("customerId");
+        $id = $request->id;
         $history=orderDetail::where("customer_id",$id)->get();
         // $customer=customer::where("id",$id)->first();
-        // return $history;
-        return view ("pages.product.history")->with('history', $history);
+        return $history;
+        // return view ("pages.product.history")->with('history', $history);
      }
 
     public function emptycart(){

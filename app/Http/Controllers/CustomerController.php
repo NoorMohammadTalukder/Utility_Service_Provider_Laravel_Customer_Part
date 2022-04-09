@@ -128,7 +128,8 @@ class CustomerController extends Controller
         $customer->address=$request->address;
         $customer->password=$request->password;
         $customer->save();
-        return redirect()->route('signup');
+        // return redirect()->route('signup');
+        // return $request;
     }
 
     public function signin(){
@@ -174,11 +175,16 @@ class CustomerController extends Controller
         return view ("pages.customer.customerDash");
     }
 
-    public function customerInfo(){
-        $id=Session::get("customerId");
+    public function customerInfo(Request $request){
+        // $id=Session::get("customerId");
+        // $t = customer::where('id',$id)->first();
+        $id = $request->id;
         $t = customer::where('id',$id)->first();
+
         
-        return $t->customerProfileDetail();
+        // return $t->customerProfileDetail();
+         return $t;
+
         
     }
 
@@ -197,15 +203,17 @@ class CustomerController extends Controller
 
         ]
         );
-        $id=Session::get("customerId");
+        // $id=Session::get("customerId");
+        $id=$request->id;
+        $pass=$request->pass;
         $customer=customer::where("id",$id)
-        ->where("password",$request->password)
+        ->where("password",$pass)
         ->first();
         if ($customer){
-            echo $customer;
-            return redirect()->route("customerUpdate");
+            return $customer;
+            // return redirect()->route("customerUpdate");
         }
-        return back();
+        // return back();
         
     }
 
@@ -225,7 +233,8 @@ class CustomerController extends Controller
 
     public function customerUpdateSubmit(Request $request){
        // $id=Session::get("customerId");
-          $user1 = customer::where('id', $request->id)->first();
+       $id=$request->id;
+          $user1 = customer::where('id',$id)->first();
           
          // return $user1;
         //   echo $request->id;
@@ -241,7 +250,7 @@ class CustomerController extends Controller
         $user1->address = $request->address;
     //    // $user->password = $request->password;
         $user1->save();
-        return redirect()->route('home');
+        // return redirect()->route('home');
     
     }
 
@@ -256,9 +265,14 @@ class CustomerController extends Controller
         //  $t=$request->name;
          
                 // echo "hi";
-                $t = customer::where('id',$request->id)->first();
-                //   return $t;
-                 return $t->customerProfileDetail1();
+                // $t = customer::where('id',$request->id)->first();
+                // //   return $t;
+                //  return $t->customerProfileDetail1();
+
+                 $t = customer::where('id',"1")->first();
+                
+                 $details= customer::where("id","1")->get();
+                 return $details;
         
             }
 
