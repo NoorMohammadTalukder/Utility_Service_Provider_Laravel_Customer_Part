@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,9 @@ Route::get('/emptycart',[ProductController::class,'emptycart'])->name('emptycart
 Route::get('/SpecificServiceDetail/{id}',[CustomerController::class,'SpecificServiceDetail'])->name('SpecificServiceDetail')->middleware("validCustomer");;
 
 // Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');
+
+// Route::get('/email',function(){
+//     Mail::to('noor11809027@gmail.com@gmail.com')->send(new welcomeMail());
+//     return new welcomeMail();
+// });
+Route::get('my-demo-mail', [EmailController::class, 'myDemoMail']);
