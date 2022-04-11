@@ -8,6 +8,15 @@ use App\Http\Requests\StorecustomerRequest;
 use App\Http\Requests\UpdatecustomerRequest;
 use Session;
 use Illuminate\Support\Facades\Cookie;
+use App\Models\CUser;
+use App\Models\Token;
+use Illuminate\Support\Str;
+use DateTime;
+use App\Models\Email;
+use App\Http\Requests\StoreEmailRequest;
+use App\Http\Requests\UpdateEmailRequest;
+use App\Mail\welcomeMail;
+use Mail;
 
 class CustomerController extends Controller
 {
@@ -137,37 +146,61 @@ class CustomerController extends Controller
 
     }
 
-    public function signinSubmit(Request $request){
-        $validate=$request->validate([
+    public function signinSubmit(Request $req){
+        // $validate=$request->validate([
             
-            'email'=>'email',
-            'password'=>'required',
+        //     'email'=>'email',
+        //     'password'=>'required',
 
-        ],
-        [
-            'email'=>"Mail is missing",
-            'password.required'=>"Password is missing"
+        // ],
+        // [
+        //     'email'=>"Mail is missing",
+        //     'password.required'=>"Password is missing"
 
-        ]
-        );
+        // ]
+        // );
 
-        $customer=customer::where("email",$request->email)
-        ->where("password",$request->password)
-        ->first();
-        if ($customer){
-            $request->session()->put("customerId",$customer->id);
+        // $customer=customer::where("email",$request->email)
+        // ->where("password",$request->password)
+        // ->first();
+        // if ($customer){
+        //     // $request->session()->put("customerId",$customer->id);
 
-            if ($request->remember) {
-                setcookie('remember',$request->email, time()+36000);
+        //     // if ($request->remember) {
+        //     //     setcookie('remember',$request->email, time()+36000);
               
-            }else{
-                setcookie('remember',"");
-                Cookie::queue('email',"");
-            }
+        //     // }else{
+        //     //     setcookie('remember',"");
+        //     //     Cookie::queue('email',"");
+        //     // }
 
-            return redirect()->route("home");
+        //     // return redirect()->route("home");
+        //     return "ok";
+        // }
+        // return "error";
+// ---------------------------------------------------
+        // $customer=customer::where("email",$request->email)
+        // ->where("password",$request->password)
+        // ->first();
+        // if ($customer){
+          
+        //     return "ok";
+        // }
+        // return "error";
+        // ---------------------------------------
+        $user = customer::where('email',$req->email)->where('password',$req->password)->first();
+        if($user){
+            $api_token = Str::random(64);
+            $token = new Token();
+            $token->userid = $user->id;
+            $token->token = $api_token;
+            $token->created_at = new DateTime();
+            $token->save();
+            return $token;
+            
+           
         }
-        return back();
+        return "No user found";
 
     }
 
@@ -187,6 +220,11 @@ class CustomerController extends Controller
 
         
     }
+    public function aa(){
+        return "ok";
+    }
+
+    
 
     public function customerUpdateInformation(){
         return view("pages.customer.updateInformationPasswordCheck");

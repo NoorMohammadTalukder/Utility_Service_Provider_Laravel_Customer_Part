@@ -1,10 +1,10 @@
 @component('mail::message')
 # Introduction
 
-The body of your message.
+Order Placed
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => 'http://localhost:3000/login'])
+Login here
 @endcomponent
 
 Thanks,<br>
