@@ -18,12 +18,12 @@ class APIAuth
     public function handle(Request $request, Closure $next)
     {
         $token = $request->header("Authorization");
-        $check_token = Token::where('token',$token)->where('expired_at',NULL)->first();
+        $check_token = Token::where('token',$token)->where('expired_at',"false")->first();
         if ($check_token) {
             return $next($request);
             
         }
-        else "error";
-        //  return response("Invalid token",401);
+        // else "error";
+         return response("Invalid token",401);
     }
 }

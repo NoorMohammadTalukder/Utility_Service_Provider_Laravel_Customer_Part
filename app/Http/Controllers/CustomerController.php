@@ -195,12 +195,27 @@ class CustomerController extends Controller
             $token->userid = $user->id;
             $token->token = $api_token;
             $token->created_at = new DateTime();
+            $token->expired_at = "false";
             $token->save();
             return $token;
             
            
         }
         return "No user found";
+
+    }
+    public function logout(Request $request){
+        // $token = new Token();
+        // $token = $request->header("Authorization");
+        $token = $request->tokenString;
+        // $token = $request->token;
+        $check_token = Token::where('token',$token)->where('expired_at',"false")->first();
+        return $check_token;
+    //    $t=new DateTime();
+    //    $t2=strval($t);
+        $check_token->expired_at="true";
+        $check_token->save();
+
 
     }
 
@@ -271,8 +286,8 @@ class CustomerController extends Controller
 
     public function customerUpdateSubmit(Request $request){
        // $id=Session::get("customerId");
-       $id=$request->id;
-          $user1 = customer::where('id',$id)->first();
+       $email=$request->email;
+          $user1 = customer::where('email',$email)->first();
           
          // return $user1;
         //   echo $request->id;
@@ -283,7 +298,7 @@ class CustomerController extends Controller
 
        // return $request->id;
         $user1->name = $request->name;
-        $user1->email= $request->email;
+        // $user1->email= $request->email;
         $user1->phone = $request->phone;
         $user1->address = $request->address;
     //    // $user->password = $request->password;
@@ -298,6 +313,7 @@ class CustomerController extends Controller
         session()->forget('customerId');
         return redirect()->route('signin');
     }
+   
 
     public function SpecificServiceDetail(Request $request){
         //  $t=$request->name;
@@ -312,6 +328,14 @@ class CustomerController extends Controller
                  $details= customer::where("id","1")->get();
                  return $details;
         
-            }
+    }
+    public function delete(Request $request){
+        $customer=customer::where('email', $request->email)->first();
+        $customer->delete();
+
+        return "ok";
+
+    }
+   
 
 }

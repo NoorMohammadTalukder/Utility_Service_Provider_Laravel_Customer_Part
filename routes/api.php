@@ -31,6 +31,9 @@ Route::get('/aa',[CustomerController::class,'aa']);
 
 // Route::post('/updateInformationPassFormSubmit/{id}/{pass}', [CustomerController::class, 'updateInformationPassFormSubmit']);
 Route::post('/customerUpdate/{id}', [CustomerController::class, 'customerUpdateSubmit']);
+Route::post('/customerUpdateSubmit', [CustomerController::class, 'customerUpdateSubmit'])->middleware('APIAuth');;
+Route::post('/logout', [CustomerController::class, 'logout'])->middleware('APIAuth');;
+Route::post('/delete',[CustomerController::class,'delete']);
 
 Route::get('/SpecificServiceDetail',[CustomerController::class,'SpecificServiceDetail']);
 
@@ -42,9 +45,9 @@ Route::get('/serviceDetail/{id}',[ProductController::class,'serviceDetail']);
 Route::get('/orderHistory/{id}',[ProductController::class,'orderHistory']);
 
 
-Route::get('/product/list',[ProductController::class,'list']);
+// Route::get('/product/list',[ProductController::class,'list']);
 
-// Route::get('/product/list',[ProductController::class,'list'])->middleware('APIAuth');
+Route::get('/product/list',[ProductController::class,'list'])->middleware('APIAuth');
 
 // Route::get('signinSubmit', [EmailController::class, 'myDemoMail']);
 Route::get('/my-demo-mail', [EmailController::class, 'myDemoMail']);
